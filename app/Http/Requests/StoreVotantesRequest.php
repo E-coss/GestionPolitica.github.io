@@ -25,6 +25,7 @@ class StoreVotantesRequest extends FormRequest
      */
     public function rules()
     {
+ 
         return [
             'nombre' => 'required|max:50|min:4|string',
             'cedula' => 'required|unique:endvoters',
@@ -37,9 +38,11 @@ class StoreVotantesRequest extends FormRequest
             'municipio' => 'required',
             'sector' => 'required',
             'calle' => 'required',
-            'email' => 'required',
-            'facebook' => 'required',
-            'instagram' => 'required',
+            'email' => 'email',
+            'latitud' => 'required',
+            'longitud' => 'required',
+            'descripcion' => 'required',
+            
         ];
     }
     
@@ -61,9 +64,10 @@ class StoreVotantesRequest extends FormRequest
         'municipio.required' => ':attribute es requerido',
         'sector.required' => ':attribute es requerido',
         'calle.required' => ':attribute es requerido',
-        'email.required' => ':attribute es requerido',
-        'facebook.required' => ':attribute es requerido',
-        'instagram.required' => ':attribute es requerido',
+        'email.email' => ':attribute no es valido',
+        'latitud.required' => ':attribute es requerido por favor proporcione su ubicación',
+        'longitud.required' => ':attribute es requerido por favor proporcione su ubicación',
+        'descripcion.required' => ':attribute es requerido',
     ];
 }
     
@@ -82,8 +86,9 @@ class StoreVotantesRequest extends FormRequest
         'sector'    => 'Seleccione su sector',
         'calle'    => 'La calle',
         'email'    => 'El campo email',
-        'facebook'    => 'El campo Facebook',
-        'instagram'    => 'El campo instagram',
+        'latitud'    => 'El campo latitud',
+        'longitud'    => 'El campo longitud',
+        'descripcion'    => 'El campo descripcion',
     ];
 }
 

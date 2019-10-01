@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use PDF;
+use App\Endvoters;
 class HomeController extends Controller
 {
     /**
@@ -25,4 +26,12 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    /*
+    public function generatePDF()
+    {
+        $data = Endvoters::all();
+        $pdf = PDF::loadView('myPDF', compact('data') );
+  
+        return $pdf->download('reportes.pdf');
+    }*/
 }
