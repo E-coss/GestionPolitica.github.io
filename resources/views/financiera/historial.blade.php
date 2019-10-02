@@ -6,11 +6,13 @@
           <div class="row">
             <div class="col-12">
             <!-- Area Chart -->
-            <h6 class="m-0 font-weight-bold text-primary">Historial de pagos</h6>
+           
               <div class="card shadow mb-4">
                
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+ <h6 class="m-0 font-weight-bold text-primary">Historial de pagos</h6>
+<!--
                   <form method="POST" action="">
                     @csrf
                     <div class="box">
@@ -20,6 +22,8 @@
                       </div>
                     </div>
                     </form>
+-->
+
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -34,12 +38,12 @@
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body">
+    <div class="card-body">
                   <!-- bigint table-->
     <div class="table-responsive-lg">
                   <table class="table">
   <thead>
-    <tr>
+    <tr id="row{{$nomina->id}}">
       <th scope="col">Nombre</th>
       <th scope="col">Sueldo</th>
       <th scope="col">Fecha</th>
@@ -51,7 +55,7 @@
     @foreach($nominas as $nomina)
     <tr>
       <td>{{ $nomina->datos->name }}</td>
-      <td>{{ '$'.number_format($nomina->sueldo ,2 ,'.',',' ) }}</td>
+      <td id="sueldo{{$nomina->id}}">{{ '$'.number_format($nomina->sueldo ,2 ,'.',',' ) }}</td>
       <th>{{ $nomina->observaciones }}</th>
       <td>{{ $nomina->created_at }}</td>
       <td>
@@ -117,8 +121,7 @@
       <div class="modal-body">
        <div class="form-row">
     <div class="form-group col-md-12">
-     <h4 id="name"></h4>
-      <label for="inputCedula">Sueldo</label>
+     <h3 id="name" class="mb-2"></h3>
       <div class="input-group">
       <div class="input-group-prepend">
           <span class="input-group-text" id="sueldo"><i class="fas fa-dollar-sign"></i></span>
@@ -128,7 +131,7 @@
        </div>
   </div>
         <input type="hidden" id="nomina_id" value="" name="nomina_id">
-        <div class="alert alert-success exitoEdit py-0 mt-2" role="alert"  hidden> <p id="exitoEdit" class="text-center"></p></div>
+        <div class="alert alert-success exitoEdit py-0 mt-2" role="alert"> <p id="exitoEdit" class="text-center"></p></div>
       </div>
     
       <div class="modal-footer">

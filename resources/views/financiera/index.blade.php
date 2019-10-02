@@ -21,7 +21,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$hoy}}</div>
                     </div>
                     <div class="col-auto">
-                     <i class="fas fa-hand-holding-usd fa-2x text-primary"></i>
+                        <a href="{{route('nominas-hoy')}}"><i class="fas fa-hand-holding-usd fa-2x text-primary"></i></a>
                     </div>
                   </div>
                 </div>
@@ -38,7 +38,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$month}}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-search-dollar fa-2x text-success"></i>
+                        <a href="{{route('nominas-mes')}}"><i class="fas fa-search-dollar fa-2x text-success"></i></a>
                     </div>
                   </div>
                 </div>
@@ -51,20 +51,15 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Fondos</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Nominas</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">19,000</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$all}} ( ${{$fondo}} )</div>
                         </div>
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-info"></i>
+                        <a href="{{route('nominas-all')}}"><i class="fas fa-dollar-sign fa-2x text-info"></i></a>
                     </div>
                   </div>
                 </div>
@@ -73,15 +68,15 @@
 
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Gastos</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">${{$fondo}}</div>
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Nulos</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$nulos}}</div>
                     </div>
                     <div class="col-auto">
-                      <i class="far fa-money-bill-alt fa-2x text-warning"></i>
+                        <a href="{{route('nominas-nulos')}}"><i class="fas fa-ban fa-2x text-danger"></i></a>
                     </div>
                   </div>
                 </div>
@@ -126,7 +121,7 @@
   </thead>
   <tbody>
     @foreach($nominas as $nomina)
-    <tr>
+    <tr id="row{{$nomina->id}}">
       <td>{{ $nomina->datos->name }}</td>
       <td id="sueldo{{$nomina->id}}">{{ '$'.number_format($nomina->sueldo ,2 ,'.',',' )  }}</td>
       <th>{{ $nomina->created_at }}</th>
@@ -198,18 +193,17 @@
       <div class="modal-body">
        <div class="form-row">
     <div class="form-group col-md-12">
-     <h4 id="name"></h4>
-      <label for="inputCedula">Sueldo</label>
+     <h4 id="name" class="mb-2"></h4>
       <div class="input-group">
       <div class="input-group-prepend">
           <span class="input-group-text" id="sueldo"><i class="fas fa-dollar-sign"></i></span>
       </div>
-      <input type="text" class="form-control" id="inputSueldo" placeholder="Sueldo" name="sueldo" aria-describedby="sueldo" value="">
+      <input type="text" class="form-control" id="inputSueldo" placeholder="Sueldo" name="sueldo" aria-describedby="sueldo">
     </div>
        </div>
   </div>
         <input type="hidden" id="nomina_id" value="" name="nomina_id">
-        <div class="alert alert-success exitoEdit py-0 mt-2" role="alert"  hidden> <p id="exitoEdit" class="text-center"></p></div>
+        <div class="alert alert-success exitoEdit py-0 mt-2" role="alert"> <p id="exitoEdit" class="text-center"></p></div>
       </div>
     
       <div class="modal-footer">

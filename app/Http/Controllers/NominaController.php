@@ -14,14 +14,16 @@ class NominaController extends Controller
 {
     public function index()
     {
-        $hoy=Nomina::where([['created_at', '=', Carbon::today()->format('Y-m-d')],['estado', '!=', 0]])->count();
+        $hoy=Nomina::whereDate('created_at', '=', Carbon::today()->format('Y-m-d'))->Where('estado', '!=', 0)->count();
         $month=Nomina::whereMonth('created_at', '=', Carbon::today()->format('m'))->where('estado',1)->count();
         $fondos=Nomina::Where('estado', '!=', 0)->sum('sueldo');
         $fondo=number_format($fondos ,2 ,'.',',' );
+        $all=Nomina::Where('estado', '!=', 0)->count();
+        $nulos=Nomina::Where('estado', '=', 0)->count();
         //$gastos=Nomina::where();
         $nominas=Nomina::Where('estado', '!=', 0)->paginate(5);
         
-        return view("financiera.index",compact('nominas','hoy','month','fondo'));
+        return view("financiera.index",compact('nominas','hoy','month','fondo','all','nulos'));
     }
      
     public function create(){
@@ -49,7 +51,7 @@ class NominaController extends Controller
     }
 
     public function historial(){
-        $nominas=Nomina::all();
+        $nominas=Nomina::Where('estado', '!=', 0)->paginate(10);
         return view("financiera.historial",["nominas"=>$nominas]);
     }
     

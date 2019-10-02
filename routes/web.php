@@ -45,7 +45,7 @@ Route::post('/filajax/votantes', 'SearchAjaxController@searchEndvoters');
 
 Route::post('/ajax/nominas', 'SearchAjaxController@searchNominas');
 
-//FILTERS DAY MONTH YEARS
+//FILTERS DAY MONTH YEARS VOTANTES
 
 Route::get('/filtro/votantes/hoy', 'FiltersController@hoy');
 
@@ -67,11 +67,28 @@ Route::put('/financiera/pago/{id}', 'NominaController@update');
 
 Route::get('/financiera/historial', 'NominaController@historial');
 
+//FILTERS DAY MONTH YEARS VOTANTES
+
+Route::get('/filtro/nominas/hoy', 'FiltersController@nominashoy')->name('nominas-hoy');
+
+Route::get('/filtro/nominas/mes', 'FiltersController@nominasmes')->name('nominas-mes');
+
+Route::get('/filtro/nominas/todos', 'FiltersController@nominasall')->name('nominas-all');
+
+Route::get('/filtro/nominas/nulos', 'FiltersController@nominasnulos')->name('nominas-nulos');
+
 //GRAFICAS Y REPORTES (YANIER)
 Route::get('/chart', 'ChartController@index');
 //Route::get('generate-pdf','HomeController@generatePDF')->name('generate-pdf');
-Route::get('reportes', 'pdfController@index')->name('generate-pdf');
-//ERLYM
-Route::get('reportes/{filtro}', 'pdfController@voters');
 
-Route::get('/crearPDF/{tipo}', 'pdfController@crearPDF');
+//REPORTES NOMINAS Y VOTANTES
+
+Route::get('reportes/endvoters', 'pdfController@voters')->name('report-voters');
+
+Route::get('reportes/endvoters/{filtro}', 'pdfController@reportVoters');
+
+Route::get('reportes/nominas', 'pdfController@nominas')->name('report-nominas');
+
+Route::get('reportes/nominas/{filtro}', 'pdfController@reportNominas');
+
+//Route::get('/crearPDF/{tipo}', 'pdfController@crearPDF');

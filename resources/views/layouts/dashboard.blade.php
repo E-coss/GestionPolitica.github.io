@@ -122,11 +122,11 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ route('generate-pdf') }}"><i class="fas fa-person-booth"></i> Votantes</a>
+            <a class="collapse-item" href="{{ route('report-voters') }}"><i class="fas fa-person-booth"></i> Votantes</a>
             <div class="collapse-divider"></div>
             <a class="collapse-item" href="#"><i class="fas fa-users-cog"></i> Usuarios</a>
             <div class="collapse-divider"></div>
-            <a class="collapse-item" href="#"><i class="fas fa-cash-register"></i> Pagos</a>
+            <a class="collapse-item" href="{{ route('report-nominas') }}"><i class="fas fa-cash-register"></i> Pagos</a>
           </div>
         </div>
       </li>
